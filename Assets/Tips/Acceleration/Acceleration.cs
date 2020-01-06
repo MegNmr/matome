@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
+
 public class Acceleration : MonoBehaviour
 {
-
+   
     const int HISMAX = 10;      // 履歴の個数
     const float BORDER = 2.0f; // しきい値
     double ikkomae = 1;
-    double a = 0.3;
+    double a = 0.4;
     double LPFY;
     double LPFX;
     int count = 0;
-    //int counter = 0;
+    int flag=0;
+    public GameObject score_object = null; // Textオブジェクト
+
 
 
     Vector3 center;
@@ -42,18 +47,31 @@ public class Acceleration : MonoBehaviour
         LPFY = a * LPFX + (1 - a) * ikkomae;
         ikkomae = LPFY;
 
+        if (LPFY >= 1.2 && LPFY <= 2.0 && flag == 0)
+        {
+            count++;
+            flag = 1;
+        }
+
+        if (flag == 1 && LPFY < 1.2)
+        {
+            flag = 0;
+
+        }
+
         if (history.Count >= HISMAX)
         {
-
-            if (LPFY >= 1.5 & LPFY <= 2.0)
-            {
-                count++;
-            }
 
             history.RemoveAt(0);
         }
         history.Add(pos);
+
         DrawLines();
+
+        // オブジェクトからTextコンポーネントを取得
+        Text score_text = score_object.GetComponent<Text>();
+        // テキストの表示を入れ替える
+        score_text.text = count.ToString();
 
     }
 
@@ -67,12 +85,18 @@ public class Acceleration : MonoBehaviour
     private void OnGUI()
     {
         Vector3 dir = Input.acceleration;
+       
         GUI.TextField(new Rect(10, 10, 100, 100), "X = " + dir.x.ToString());
         GUI.TextField(new Rect(10, 30, 100, 100), "Y = " + dir.y.ToString());
         GUI.TextField(new Rect(10, 50, 100, 100), "Z = " + dir.z.ToString());
         GUI.TextField(new Rect(10, 70, 100, 100), "atai = " + HypotenuseLength(dir.x, dir.y, dir.z).ToString());
         GUI.TextField(new Rect(10, 90, 100, 100), "LPF = " + LPFY.ToString());
         GUI.TextField(new Rect(10, 110, 100, 100), "Count = " + count.ToString());
+
+        //Text text = obj.GetComponent<Text>();
+        //Undo.RegisterCompleteObjectUndo(text, count.ToString());
+        //GUI.TextField(new Rect(500, 1000, 100, 100),text);
+        //Font font = Resources.Load<Font>("Fonts/07Gosic-Bold");
     }
 
     void DrawLines()
