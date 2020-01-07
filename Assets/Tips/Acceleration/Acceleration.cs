@@ -16,7 +16,13 @@ public class Acceleration : MonoBehaviour
     double LPFX;
     int count = 0;
     int flag=0;
-    public GameObject score_object = null; // Textオブジェクト
+    public GameObject score_object = null; // 歩数表示Textオブジェクト
+    public GameObject　tassei = null; // 達成度オブジェクト
+    public GameObject ishi = null; // 石の個数表示Textオブジェクト
+    int mokuhyou=500;//目標歩数
+    int ishinokazu ;//石の数
+
+
 
 
 
@@ -33,7 +39,7 @@ public class Acceleration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
         float scale = 2f;
         Vector3 dir = Input.acceleration;
         Vector3 pos = new Vector3(
@@ -43,10 +49,12 @@ public class Acceleration : MonoBehaviour
         );
         this.transform.position = pos;
 
+        //ローパスフィルタ処理
         LPFX = HypotenuseLength(dir.x, dir.y, dir.z);
         LPFY = a * LPFX + (1 - a) * ikkomae;
         ikkomae = LPFY;
 
+        //連続でカウントするのを防ぐための処理。flagが０のときのみしかカウントは進まない。
         if (LPFY >= 1.2 && LPFY <= 2.0 && flag == 0)
         {
             count++;
@@ -64,16 +72,33 @@ public class Acceleration : MonoBehaviour
 
             history.RemoveAt(0);
         }
-        history.Add(pos);
 
+        history.Add(pos);
         DrawLines();
+
+      
 
         // オブジェクトからTextコンポーネントを取得
         Text score_text = score_object.GetComponent<Text>();
-        // テキストの表示を入れ替える
+        //歩数の表示を入れ替える
         score_text.text = count.ToString();
+        // オブジェクトからTextコンポーネントを取得
+        Text ishi_text = ishi.GetComponent<Text>();
+        ishinokazu = count / 10;
+        // 石の個数の表示を入れ替える
+        ishi_text.text = ishinokazu.ToString();
+
+        //歩数が目標に達していないとき、円を大きくしていく
+        if (mokuhyou>=count)
+        {
+            Transform tassei_scale = tassei.GetComponent<Transform>(); //達成円オブジェクトから Transformコンポーネント取得
+            tassei_scale.transform.localScale = new Vector3(2 * (float)count / mokuhyou, 2*(float)count / mokuhyou, 1);//円サイズの変更
+        }
+        
+    
 
     }
+
 
     float HypotenuseLength(float sideALength, float sideBLength, float sideCLength)
     {
@@ -82,7 +107,8 @@ public class Acceleration : MonoBehaviour
 
 
 
-    private void OnGUI()
+
+    /*private void OnGUI()
     {
         Vector3 dir = Input.acceleration;
        
@@ -97,7 +123,7 @@ public class Acceleration : MonoBehaviour
         //Undo.RegisterCompleteObjectUndo(text, count.ToString());
         //GUI.TextField(new Rect(500, 1000, 100, 100),text);
         //Font font = Resources.Load<Font>("Fonts/07Gosic-Bold");
-    }
+    }*/
 
     void DrawLines()
     {
