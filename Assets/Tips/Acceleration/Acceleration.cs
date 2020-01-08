@@ -127,10 +127,6 @@ public class Acceleration : MonoBehaviour
         //歩数の表示を入れ替える
         score_text.text = count.ToString();
         // オブジェクトからTextコンポーネントを取得
-        Dropdown score_text = score_object.GetComponent<Text>();
-        //歩数の表示を入れ替える
-        score_text.text = count.ToString();
-        // オブジェクトからTextコンポーネントを取得
         Text ishi_text = ishi.GetComponent<Text>();
         ishinokazu = count / 10;
         // 石の個数の表示を入れ替える
