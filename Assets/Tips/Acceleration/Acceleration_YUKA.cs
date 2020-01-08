@@ -4,16 +4,21 @@ using UnityEngine;
 
 using UnityEngine.UI;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/user_uchino
 public class Acceleration : MonoBehaviour
 {
-
+   
     const int HISMAX = 10;      // 履歴の個数
     const float BORDER = 2.0f; // しきい値
     double ikkomae = 1;
-    double a = 0.3;
+    double a = 0.4;
     double LPFY;
     double LPFX;
     int count = 0;
+<<<<<<< HEAD
     int standard = 10;
     float time = 0f;
     int second = 0;
@@ -24,6 +29,17 @@ public class Acceleration : MonoBehaviour
 
     InputField inputField;
     Text text;
+=======
+    int flag=0;
+    public GameObject score_object = null; // 歩数表示Textオブジェクト
+    public GameObject　tassei = null; // 達成度オブジェクト
+    public GameObject ishi = null; // 石の個数表示Textオブジェクト
+    int mokuhyou=500;//目標歩数
+    int ishinokazu ;//石の数
+
+
+
+>>>>>>> origin/user_uchino
 
 
     Vector3 center;
@@ -50,6 +66,7 @@ public class Acceleration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         //time count
         time += Time.deltaTime;//毎フレームの時間を加算.
         int minute = (int)time / 60;//分.timeを60で割った値.
@@ -70,6 +87,9 @@ public class Acceleration : MonoBehaviour
 
         // time count end
 
+=======
+        
+>>>>>>> origin/user_uchino
         float scale = 2f;
         Vector3 dir = Input.acceleration;
         Vector3 pos = new Vector3(
@@ -79,23 +99,45 @@ public class Acceleration : MonoBehaviour
         );
         this.transform.position = pos;
 
+<<<<<<< HEAD
         LPFX = HypotenuseLength(dir.x, dir.y, dir.z); //kasokudo
+=======
+        //ローパスフィルタ処理
+        LPFX = HypotenuseLength(dir.x, dir.y, dir.z);
+>>>>>>> origin/user_uchino
         LPFY = a * LPFX + (1 - a) * ikkomae;
         ikkomae = LPFY; //filter
 
-        if (history.Count >= HISMAX)
+        //連続でカウントするのを防ぐための処理。flagが０のときのみしかカウントは進まない。
+        if (LPFY >= 1.2 && LPFY <= 2.0 && flag == 0)
         {
+            count++;
+            flag = 1;
+        }
 
+        if (flag == 1 && LPFY < 1.2)
+        {
+            flag = 0;
+
+<<<<<<< HEAD
             if (LPFY >= 1.5 & LPFY <= 2.0)
             {
                 count++; //hosuu
             }
+=======
+        }
+
+        if (history.Count >= HISMAX)
+        {
+>>>>>>> origin/user_uchino
 
             history.RemoveAt(0);
         }
+
         history.Add(pos);
         DrawLines();
 
+<<<<<<< HEAD
         if (second > 5)
         {
             image_object.SetActive(false);
@@ -103,8 +145,31 @@ public class Acceleration : MonoBehaviour
             Debug.Log(image_object.name);
 
         }
+=======
+      
+
+        // オブジェクトからTextコンポーネントを取得
+        Text score_text = score_object.GetComponent<Text>();
+        //歩数の表示を入れ替える
+        score_text.text = count.ToString();
+        // オブジェクトからTextコンポーネントを取得
+        Text ishi_text = ishi.GetComponent<Text>();
+        ishinokazu = count / 10;
+        // 石の個数の表示を入れ替える
+        ishi_text.text = ishinokazu.ToString();
+
+        //歩数が目標に達していないとき、円を大きくしていく
+        if (mokuhyou>=count)
+        {
+            Transform tassei_scale = tassei.GetComponent<Transform>(); //達成円オブジェクトから Transformコンポーネント取得
+            tassei_scale.transform.localScale = new Vector3(2 * (float)count / mokuhyou, 2*(float)count / mokuhyou, 1);//円サイズの変更
+        }
+        
+    
+>>>>>>> origin/user_uchino
 
     }
+
 
     float HypotenuseLength(float sideALength, float sideBLength, float sideCLength)
     {
@@ -113,19 +178,30 @@ public class Acceleration : MonoBehaviour
 
 
 
-    private void OnGUI()
+
+    /*private void OnGUI()
     {
         Vector3 dir = Input.acceleration;
+       
         GUI.TextField(new Rect(10, 10, 100, 100), "X = " + dir.x.ToString());
         GUI.TextField(new Rect(10, 30, 100, 100), "Y = " + dir.y.ToString());
         GUI.TextField(new Rect(10, 50, 100, 100), "Z = " + dir.z.ToString());
         GUI.TextField(new Rect(10, 70, 100, 100), "atai = " + HypotenuseLength(dir.x, dir.y, dir.z).ToString());
         GUI.TextField(new Rect(10, 90, 100, 100), "LPF = " + LPFY.ToString());
         GUI.TextField(new Rect(10, 110, 100, 100), "Count = " + count.ToString());
+<<<<<<< HEAD
         GUI.TextField(new Rect(10, 130, 100, 100), "second = " + second.ToString());
 
 
     }
+=======
+
+        //Text text = obj.GetComponent<Text>();
+        //Undo.RegisterCompleteObjectUndo(text, count.ToString());
+        //GUI.TextField(new Rect(500, 1000, 100, 100),text);
+        //Font font = Resources.Load<Font>("Fonts/07Gosic-Bold");
+    }*/
+>>>>>>> origin/user_uchino
 
     void DrawLines()
     {
