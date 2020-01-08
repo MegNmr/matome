@@ -113,7 +113,7 @@ public class Acceleration : MonoBehaviour
         history.Add(pos);
         DrawLines();
 
-        if (count > 5)
+        if (second > 5)
         {
             image_object.SetActive(false);
             image_object2.SetActive(true);
@@ -125,7 +125,6 @@ public class Acceleration : MonoBehaviour
         // オブジェクトからTextコンポーネントを取得
         Text score_text = score_object.GetComponent<Text>();
         //歩数の表示を入れ替える
-        count = second;
         score_text.text = count.ToString();
         // オブジェクトからTextコンポーネントを取得
         Text ishi_text = ishi.GetComponent<Text>();
