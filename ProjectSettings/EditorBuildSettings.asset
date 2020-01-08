@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Tips/test1/gacha.unity
+    guid: f0912efdb9a79204b9b6127bdb5e2dc2
+  - enabled: 1
+    path: "Assets/Tips/test1/\u78BA\u7387\u5224\u5B9A.unity"
+    guid: ddea9c67c65b8024f8f14a0ab89e1625
   m_configObjects: {}
