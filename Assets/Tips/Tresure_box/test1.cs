@@ -12,6 +12,8 @@ public class test1 : MonoBehaviour
     // 敵がドロップするアイテムの辞書
     Dictionary<int, float> itemDropDict;
 
+
+
     void Start()
     {
        // GetDropItem();
@@ -43,6 +45,7 @@ public class test1 : MonoBehaviour
         {
             string itemName = itemInfo[itemId];
             Debug.Log(itemName + " を入手した!");
+           
         }
         else
         {
