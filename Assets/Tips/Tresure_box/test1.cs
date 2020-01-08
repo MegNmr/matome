@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class test1 : MonoBehaviour
@@ -12,11 +13,12 @@ public class test1 : MonoBehaviour
     // 敵がドロップするアイテムの辞書
     Dictionary<int, float> itemDropDict;
 
-
-
+    Image image;
     void Start()
     {
-       // GetDropItem();
+        // GetDropItem();
+        image = this.GetComponent<Image>();
+        image.enabled = false;
     }
 
     void Update()
@@ -41,11 +43,22 @@ public class test1 : MonoBehaviour
         int itemId = Choose();
 
         // アイテムIDに応じたメッセージ出力
-        if (itemId != 0)
+        if (itemId != 7)
         {
             string itemName = itemInfo[itemId];
             Debug.Log(itemName + " を入手した!");
-           
+
+
+            Sprite sprite = Resources.Load<Sprite>(itemName);
+            
+            image.sprite = sprite;
+            image.enabled =true;
+
+
+            //Debug.Log(image_object.name);
+
+            //image_object2.SetActive(false);
+
         }
         else
         {
@@ -56,19 +69,22 @@ public class test1 : MonoBehaviour
     void InitializeDicts()
     {
         itemInfo = new Dictionary<int, string>();
-        itemInfo.Add(0, "なし");
-        itemInfo.Add(1, "竜のひげ");
-        itemInfo.Add(2, "竜の爪");
-        itemInfo.Add(3, "竜のうろこ");
-        itemInfo.Add(4, "竜の翼");
-        itemInfo.Add(5, "竜の逆鱗");
-        itemInfo.Add(6, "竜の紅玉");
+        itemInfo.Add(0, "inter_S1");
+        itemInfo.Add(1, "inter_S2");
+        itemInfo.Add(2, "inter_S3");
+        itemInfo.Add(3, "inter_T1");
+        itemInfo.Add(4, "inter_T2");
+        itemInfo.Add(5, "inter_T3");
+        itemInfo.Add(6, "inter_R1");
 
         itemDropDict = new Dictionary<int, float>();
-        itemDropDict.Add(0, 60.0f);
-        itemDropDict.Add(2, 25.0f);
-        itemDropDict.Add(3, 12.0f);
-        itemDropDict.Add(5, 3.0f);
+        itemDropDict.Add(0, 10.0f);
+        itemDropDict.Add(1, 10.0f);
+        itemDropDict.Add(2, 10.0f);
+        itemDropDict.Add(3, 10.0f);
+        itemDropDict.Add(4, 10.0f);
+        itemDropDict.Add(5, 10.0f);
+        itemDropDict.Add(6, 10.0f);
     }
 
     int Choose()
