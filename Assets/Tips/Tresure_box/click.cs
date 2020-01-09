@@ -20,7 +20,7 @@ public class click : MonoBehaviour
     ParticleSystem particle;
     //public GameObject particle;//Particleを宣言
 
-
+    bool flag = false;
     // Use this for initialization
     void Start()
         {
@@ -34,16 +34,19 @@ public class click : MonoBehaviour
         void Update()
         {
 
-            if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (flag == false)
             {
-            
                 anim.Play();
                 particle.Play();
-               // Debug.Log("onaka suita!");
-                
+                // Debug.Log("onaka suita!");
+            }
 
-
-
+            flag = true;
         }
+
+
+        
         }
     }

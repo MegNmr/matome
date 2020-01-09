@@ -13,6 +13,9 @@ public class test1 : MonoBehaviour
     // 敵がドロップするアイテムの辞書
     Dictionary<int, float> itemDropDict;
 
+    bool flag = false;
+
+
     Image image;
     void Start()
     {
@@ -26,8 +29,12 @@ public class test1 : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            if (flag == false)
+            {
+                GetDropItem();
+            }
 
-            GetDropItem();
+            flag = true;
 
 
 

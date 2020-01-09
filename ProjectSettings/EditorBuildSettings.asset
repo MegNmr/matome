@@ -11,4 +11,16 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Tips/test1/\u78BA\u7387\u5224\u5B9A.unity"
     guid: ddea9c67c65b8024f8f14a0ab89e1625
+  - enabled: 1
+    path: Assets/Tips/Acceleration/LogIn.unity
+    guid: e52fc04833841a04493ade58759a9665
+  - enabled: 1
+    path: Assets/Tips/Acceleration/DressUp.unity
+    guid: 7c12d377bf5e51f4593dfbf4acbf3594
+  - enabled: 1
+    path: Assets/Tips/Acceleration/main_scene.unity
+    guid: fc7ded90dca27a645b06149dda20c6e6
+  - enabled: 1
+    path: Assets/Tips/Acceleration/TestAcceleration.unity
+    guid: 6e8f985dd190a4808bee6a3b415cf97f
   m_configObjects: {}
