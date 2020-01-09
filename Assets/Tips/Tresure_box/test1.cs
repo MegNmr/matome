@@ -8,15 +8,17 @@ public class test1 : MonoBehaviour
 {
 
     // アイテムのデータを保持する辞書
-    Dictionary<int, string> itemInfo;
+    public static Dictionary<int, string> itemInfo;
 
     // 敵がドロップするアイテムの辞書
-    Dictionary<int, float> itemDropDict;
+    public static Dictionary<int, float> itemDropDict;
 
-    bool flag = false;
+    public static int itemId;
+    public static string itemName;
 
+    public static int flag = 0;
 
-    Image image;
+    public static Image image;
     void Start()
     {
         // GetDropItem();
@@ -29,51 +31,72 @@ public class test1 : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (flag == false)
+            if ((flag == 0) || (flag == 1))
             {
                 GetDropItem();
+                
             }
 
-            flag = true;
 
+            
 
 
         }
     }
 
-    void GetDropItem()
+    public static void GetDropItem()
     {
-        // 各種辞書の初期化
-        InitializeDicts();
 
-        // ドロップアイテムの抽選
-        int itemId = Choose();
-
-        // アイテムIDに応じたメッセージ出力
-        if (itemId != 7)
+        if (flag == 1)
         {
-            string itemName = itemInfo[itemId];
-            Debug.Log(itemName + " を入手した!");
+            Application.LoadLevel("gacha_result");
 
-
-            Sprite sprite = Resources.Load<Sprite>(itemName);
+            flag = 0;
             
-            image.sprite = sprite;
-            image.enabled =true;
-
-
-            //Debug.Log(image_object.name);
-
-            //image_object2.SetActive(false);
-
         }
         else
         {
-            Debug.Log("アイテムは入手できませんでした。");
+            // 各種辞書の初期化
+            InitializeDicts();
+
+            // ドロップアイテムの抽選
+            itemId = Choose();
+
+            // アイテムIDに応じたメッセージ出力
+            if (itemId != 7)
+            {
+                itemName = itemInfo[itemId];
+                Debug.Log(itemName + " を入手した!");
+
+
+                Sprite sprite = Resources.Load<Sprite>(itemName);
+
+                image.sprite = sprite;
+                image.enabled = true;
+
+
+
+
+
+
+            }
+            else
+            {
+                Debug.Log("アイテムは入手できませんでした。");
+            }
+
+            flag++;
         }
     }
 
-    void InitializeDicts()
+    public static string getitemName()
+    {
+        return itemName;
+    }
+
+
+
+    public static void InitializeDicts()
     {
         itemInfo = new Dictionary<int, string>();
         itemInfo.Add(0, "inter_S1");
@@ -94,7 +117,7 @@ public class test1 : MonoBehaviour
         itemDropDict.Add(6, 10.0f);
     }
 
-    int Choose()
+    public static int Choose()
     {
         // 確率の合計値を格納
         float total = 0;
