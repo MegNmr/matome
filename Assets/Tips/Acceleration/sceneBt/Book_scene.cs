@@ -6,18 +6,18 @@ using UnityEngine.UI;
 // 2.Scene関係の処理を行うときに必要なライブラリ
 using UnityEngine.SceneManagement;
 
-public class main_scene : MonoBehaviour
+public class Book_scene : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
     public void OnRetry()
