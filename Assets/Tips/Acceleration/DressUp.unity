@@ -1072,6 +1072,7 @@ GameObject:
   - component: {fileID: 1133181696}
   - component: {fileID: 1133181695}
   - component: {fileID: 1133181694}
+  - component: {fileID: 1133181697}
   m_Layer: 5
   m_Name: Gacha
   m_TagString: Untagged
@@ -1139,8 +1140,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: OnRetry
+      - m_Target: {fileID: 1133181692}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1185,6 +1186,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1133181692}
   m_CullTransparentMesh: 0
+--- !u!114 &1133181697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133181692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8633ecd0041d72a4181b9df54a517648, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1183327094
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1478,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1263884055
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 117f61dc2a9496e468f6285d60d8158c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
