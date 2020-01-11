@@ -165,8 +165,6 @@ public class Acceleration : MonoBehaviour
         return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength + sideCLength * sideCLength);
     }
 
- 
-
 
 
 
@@ -198,10 +196,6 @@ public class Acceleration : MonoBehaviour
         }
 
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/user_uchino
     public static int getDP()
     {
         return ishinokazu;
