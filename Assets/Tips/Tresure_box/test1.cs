@@ -60,11 +60,14 @@ public class test1 : MonoBehaviour
             InitializeDicts();
 
             // ドロップアイテムの抽選
+
+            
             itemId = Choose();
 
             // アイテムIDに応じたメッセージ出力
             if (itemId != 7)
             {
+
                 itemName = itemInfo[itemId];
                 Debug.Log(itemName + " を入手した!");
 
