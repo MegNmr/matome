@@ -26,7 +26,7 @@ public class texttest : MonoBehaviour
     void Start()
     {
         // Input Fieldの子要素のText(=入力されたテキスト)への参照を保存
-        itemName = test1.getitemName();
+        itemId = test1.getitemId();
 
     }
 
@@ -42,7 +42,7 @@ public class texttest : MonoBehaviour
 
         id = LogInManager.getid();
 
-          _query = new NCMBQuery<NCMBObject>(id + "gacha_reslut");
+          _query = new NCMBQuery<NCMBObject>(id + "gacha_result");
 
         // 保存されているデータ件数を取得
         _query.CountAsync((int count, NCMBException e) => {
@@ -66,12 +66,12 @@ public class texttest : MonoBehaviour
         // データストアにそのクラスがなければNCMB側で新規作成してくれる
         // データを送る時に、newしておかないと追加ではなく上書き保存されるので注意
         FindObjectOfType<UserAuth>().logIn(id, pw);
-        _testClass = new NCMBObject(id + "gacha_reslut");
+        _testClass = new NCMBObject(id + "gacha_result");
 
         // NCMBオブジェクトに値を設定する
         // [ ]内に設定した項目名でデータストアに登録される
         _testClass["id"] = count + 1; // データ保存件数に+1して連番のidを作成
-        _testClass["message"] = itemName; // 入力されたテキストをセットで設定
+        _testClass["message"] = itemId; // 入力されたテキストをセットで設定
 
         // データストアへデータを登録する
         _testClass.SaveAsync((NCMBException e) => {

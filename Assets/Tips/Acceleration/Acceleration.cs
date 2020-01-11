@@ -32,7 +32,7 @@ public class Acceleration : MonoBehaviour
     InputField inputField;
     Text text;
     int mokuhyou=500;//目標歩数
-    int ishinokazu ;//石の数
+    public static int ishinokazu ;//石の数
 
     Vector3 center;
 
@@ -164,6 +164,8 @@ public class Acceleration : MonoBehaviour
         return Mathf.Sqrt(sideALength * sideALength + sideBLength * sideBLength + sideCLength * sideCLength);
     }
 
+ 
+
 
 
 
@@ -194,5 +196,10 @@ public class Acceleration : MonoBehaviour
             Debug.DrawLine(history[i - 1], history[i], col, 2.0f);
         }
 
+    }
+
+    public static int getDP()
+    {
+        return ishinokazu;
     }
 }
