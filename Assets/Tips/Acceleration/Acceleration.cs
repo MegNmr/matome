@@ -15,7 +15,7 @@ public class Acceleration : MonoBehaviour
     double a = 0.4;
     double LPFY;
     double LPFX;
-    int count = 0;
+    static int count = 0;
     int flag=0;
     public GameObject score_object = null; // 歩数表示Textオブジェクト
     public GameObject　tassei = null; // 達成度オブジェクト
@@ -24,7 +24,7 @@ public class Acceleration : MonoBehaviour
     public GameObject DATE_obj = null; // 日付表示Textオブジェクト
     int standard = 10;
     float time = 0f;
-    int second = 0;
+    static int second = 0;
     //int counter = 0;
     Image image_component = null;
     GameObject image_object = null;
@@ -32,7 +32,7 @@ public class Acceleration : MonoBehaviour
     InputField inputField;
     Text text;
     int mokuhyou=500;//目標歩数
-    int ishinokazu ;//石の数
+    public static int ishinokazu ;//石の数
 
     Vector3 center;
 
@@ -115,7 +115,7 @@ public class Acceleration : MonoBehaviour
         history.Add(pos);
         DrawLines();
 
-        if (second > 5)
+        if (count > 5)
         {
             image_object.SetActive(false);
             image_object2.SetActive(true);
@@ -126,6 +126,7 @@ public class Acceleration : MonoBehaviour
 
         // オブジェクトからTextコンポーネントを取得
         Text score_text = score_object.GetComponent<Text>();
+        //count = second;
         //歩数の表示を入れ替える
         score_text.text = count.ToString();
 
@@ -194,5 +195,9 @@ public class Acceleration : MonoBehaviour
             Debug.DrawLine(history[i - 1], history[i], col, 2.0f);
         }
 
+    }
+    public static int getDP()
+    {
+        return ishinokazu;
     }
 }

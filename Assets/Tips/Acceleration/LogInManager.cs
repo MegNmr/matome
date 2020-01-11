@@ -19,29 +19,69 @@ public class LogInManager : MonoBehaviour
     private bool backButton;
 
     // テキストボックスで入力される文字列を格納
-    static string id;
+    public static string id;
     static string pw;
     static string mail;
 
     private GameObject inputfield;   //InputField取得
     private GameObject inputtext;    //InputFieldのテキスト取得
-    private GameObject playertext;   //プレイヤーテキスト取得
+    private GameObject playertext;  //プレイヤーテキスト取得
+    private GameObject OYA;
+    private GameObject FALSE_OBJ_LOGIN;
+    private GameObject FALSE_OBJ_SignUp;
+   
+
+
 
     private string temp;        //入力されたテキストを一時保管
 
+    int flage = 3;
     InputField inputField;
 
 
     void Start()
     {
 
-        FindObjectOfType<UserAuth>().logOut();
+        // ゲームオブジェクトを検索し取得する
+        OYA = GameObject.Find("GUI");
+        FALSE_OBJ_LOGIN = OYA.transform.Find("GUITextLogIn/FALSE_OBJ_LOGIN").gameObject;
+        FALSE_OBJ_SignUp = OYA.transform.Find("GUITextSignUp/FALSE_OBJ_SignUp").gameObject;
 
-      
+        FALSE_OBJ_LOGIN.SetActive(false);
+        FALSE_OBJ_SignUp.SetActive(false);
 
-       
+
     }
 
+    void Update()
+    {
+        
+        if (FindObjectOfType<UserAuth>().currentPlayer() != null)
+        {
+             Application.LoadLevel("TestAcceleration");
+        }
+        /*
+        else if (flage == 0)
+        {
+            FALSE_OBJ_LOGIN.SetActive(true);
+            FALSE_OBJ_SignUp.SetActive(false);
+            flage = 3;
+
+        }
+        else if(flage == 1) {
+
+
+            FALSE_OBJ_LOGIN.SetActive(false);
+            FALSE_OBJ_SignUp.SetActive(true);
+            flage = 3;
+           
+        }*/
+        
+
+
+    }
+
+  
 
     public void TextReflect_ID()
     {
@@ -95,15 +135,16 @@ public class LogInManager : MonoBehaviour
     // ログインボタンが押されたら
     public void OnClick_login()
     {
-
+       
         FindObjectOfType<UserAuth>().logIn(id, pw); // ログを出力
+       
+            flage = 0;
+
+
 
         // currentPlayerを毎フレーム監視し、ログインが完了したら
-        if (FindObjectOfType<UserAuth>().currentPlayer() != null)
-        {
-            Debug.Log("scene切替");
-            Application.LoadLevel("TestAcceleration");
-        }
+
+       
 
 
 
@@ -116,14 +157,16 @@ public class LogInManager : MonoBehaviour
         FindObjectOfType<UserAuth>().signUp(id, mail, pw);
 
         // currentPlayerを毎フレーム監視し、ログインが完了したら
-        if (FindObjectOfType<UserAuth>().currentPlayer() != null)
-        {
-            Debug.Log("scene切替");
-            Application.LoadLevel("TestAcceleration");
-        }
+
+        flage = 1;
 
 
 
+    }
+
+    public static string getid()
+    {
+        return id;
     }
 
     /// <summary>
@@ -132,7 +175,7 @@ public class LogInManager : MonoBehaviour
     /// </summary>
 
 
-   
+
 
 
 
@@ -142,7 +185,7 @@ public class LogInManager : MonoBehaviour
     /// </summary>
 
 
-   
+
 
 
 
