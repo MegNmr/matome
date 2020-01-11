@@ -27,7 +27,9 @@ public class texttest : MonoBehaviour
     {
         // Input Fieldの子要素のText(=入力されたテキスト)への参照を保存
         itemId = test1.getitemId();
+        id = LogInManager.getid();
 
+   
     }
 
     public void SaveRakugaki()
@@ -40,16 +42,16 @@ public class texttest : MonoBehaviour
         // ここからデータの保存処理開始
         // 検索にはNCMBQueryを使う
 
-        id = LogInManager.getid();
-
+        
+        
           _query = new NCMBQuery<NCMBObject>(id + "gacha_result");
-
+        
         // 保存されているデータ件数を取得
         _query.CountAsync((int count, NCMBException e) => {
             if (e != null)
             {
                 //件数取得失敗時の処理
-                Debug.Log("件数の取得に失敗しました");
+              //  Debug.Log("件数の取得に失敗しました");
             }
             else
             {
@@ -57,6 +59,7 @@ public class texttest : MonoBehaviour
                 SendRakugakiData(count);
             }
         });
+        
 
     }
 
@@ -78,12 +81,12 @@ public class texttest : MonoBehaviour
             if (e != null)
             {
                 //件数取得失敗時の処理
-                Debug.Log("データの保存に失敗しました");
+               // Debug.Log("データの保存に失敗しました");
             }
             else
             {
                 //成功時の処理
-                Debug.Log("データの保存に成功しました");
+               // Debug.Log("データの保存に成功しました");
             }
         });
     }
