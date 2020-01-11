@@ -35,14 +35,14 @@ public class texttest : MonoBehaviour
         //var message = _rakugakiText.text;
         // 何も入力されていなければ処理しない
         //if (message == "")
-         //   return;
+        //   return;
 
         // ここからデータの保存処理開始
         // 検索にはNCMBQueryを使う
 
         id = LogInManager.getid();
 
-          _query = new NCMBQuery<NCMBObject>(id + "gacha_reslut");
+        _query = new NCMBQuery<NCMBObject>(id + "gacha_reslut");
 
         // 保存されているデータ件数を取得
         _query.CountAsync((int count, NCMBException e) => {

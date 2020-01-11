@@ -94,6 +94,11 @@ public class test1 : MonoBehaviour
         return itemName;
     }
 
+    public static int getitemId()
+    {
+        return itemId;
+    }
+
 
 
     public static void InitializeDicts()

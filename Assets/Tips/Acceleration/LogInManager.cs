@@ -19,7 +19,7 @@ public class LogInManager : MonoBehaviour
     private bool backButton;
 
     // テキストボックスで入力される文字列を格納
-    static string id;
+    public static string id;
     static string pw;
     static string mail;
 
@@ -126,13 +126,18 @@ public class LogInManager : MonoBehaviour
 
     }
 
+    public static string getid()
+    {
+        return id;
+    }
+
     /// <summary>
     /// Log出力用メソッド
     /// 入力値を取得してLogに出力し、初期化
     /// </summary>
 
 
-   
+
 
 
 
@@ -142,7 +147,7 @@ public class LogInManager : MonoBehaviour
     /// </summary>
 
 
-   
+
 
 
 
