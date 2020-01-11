@@ -3,9 +3,10 @@ using System.Collections;
 using NCMB;
 using System.Collections.Generic;
 
+
 public class UserAuth : MonoBehaviour
 {
-
+    public int flage;
     private string currentPlayerName;
 
     // mobile backendに接続してログイン ------------------------
@@ -17,6 +18,7 @@ public class UserAuth : MonoBehaviour
             // 接続成功したら
             if (e == null)
             {
+                flage = 4;
                 currentPlayerName = id;
             }
         });
