@@ -91,7 +91,17 @@ public class DP_save : MonoBehaviour
                     //Scoreが7のオブジェクトを出力
                     foreach (NCMBObject obj in objList)
                     {
-
+                      /*  obj["message"] = 500;
+                        obj.SaveAsync((NCMBException e) => {
+                            if (e != null)
+                            {
+                             
+                            }
+                            else
+                            {
+                            
+                            }
+                        });*/
                         obj.DeleteAsync();
                     }
                 }
