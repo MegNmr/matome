@@ -108,18 +108,13 @@ public class DP_save : MonoBehaviour
             });
         }
 
-
-
-
-
-
         _testClass = new NCMBObject(id + "currentDP");
 
 
         // NCMBオブジェクトに値を設定する
         // [ ]内に設定した項目名でデータストアに登録される
         _testClass["id"] = 1; // データ保存件数に+1して連番のidを作成
-        _testClass["message"] = DP; // 入力されたテキストをセットで設定
+        _testClass["message"] = 50; // 入力されたテキストをセットで設定
 
 
         // データストアへデータを登録する
