@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Tips/test1/gacha_result.unity
     guid: 11504b66487678545b60d6e8aa11597e
+  - enabled: 1
+    path: Assets/Tips/book/Book.unity
+    guid: 8911c8ebc2687244aab107394fe94f66
   m_configObjects: {}
