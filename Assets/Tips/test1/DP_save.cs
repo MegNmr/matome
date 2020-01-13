@@ -46,7 +46,7 @@ public class DP_save : MonoBehaviour
        
 
 
-        _query = new NCMBQuery<NCMBObject>(id + "currentDP");
+        _query = new NCMBQuery<NCMBObject>(id + "currentDP"); //class名
         
 
         // 保存されているデータ件数を取得
@@ -103,7 +103,7 @@ public class DP_save : MonoBehaviour
 
 
 
-        _testClass = new NCMBObject(id + "currentDP");
+        _testClass = new NCMBObject(id + "currentDP"); //実際に入れるオブジェクト
 
 
         // NCMBオブジェクトに値を設定する
