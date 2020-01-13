@@ -34,6 +34,9 @@ public class current_change : MonoBehaviour
     private GameObject newpass2;
     private InputField inputNewPass2;
 
+    private GameObject mailText;
+    Text _text;
+
     string walkpoint = "0";
     string heightpoint = "10";
     string weightpoint = "50";
@@ -46,6 +49,7 @@ public class current_change : MonoBehaviour
     string inputpassNew2;
 
     private GameObject popp;
+    private GameObject popp2;
 
     private static string currentPlayerName;
 
@@ -67,7 +71,12 @@ public class current_change : MonoBehaviour
         popp = GameObject.Find("Canvas/Panel/SuccessPop");
         popp.SetActive(false);
 
+        popp2 = GameObject.Find("Canvas/Panel/SuccessPop2");
+        popp2.SetActive(false);
 
+        mailText = GameObject.Find("Canvas/Panel/passchangePage/nowpass");
+        _text = mailText.GetComponent<Text>();
+        _text.text = selfMail;
         // Text walk_text = pass.GetComponent<Text>();
         // walk_text.text = "現在の目標歩数: " + walkpoint;
 
@@ -142,72 +151,84 @@ public class current_change : MonoBehaviour
 
     public void passchange()
     {
-        //Debug.Log("やったー入った");
-        nowpass = OYA.transform.Find("passchangePage/InputField/now").gameObject;
-        newpass = OYA.transform.Find("passchangePage/InputField/new").gameObject;
-        newpass2 = OYA.transform.Find("passchangePage/InputField/new2").gameObject;
+        ////Debug.Log("やったー入った");
+        //nowpass = OYA.transform.Find("passchangePage/InputField/now").gameObject;
+        //newpass = OYA.transform.Find("passchangePage/InputField/new").gameObject;
+        //newpass2 = OYA.transform.Find("passchangePage/InputField/new2").gameObject;
 
-        inputNowPass = nowpass.GetComponent<InputField>();
-        inputNewPass = newpass.GetComponent<InputField>();
-        inputNewPass2 = newpass2.GetComponent<InputField>();
+        //inputNowPass = nowpass.GetComponent<InputField>();
+        //inputNewPass = newpass.GetComponent<InputField>();
+        //inputNewPass2 = newpass2.GetComponent<InputField>();
 
-        inputpassNow = inputNowPass.text;
-        inputpassNew = inputNewPass.text;
-        inputpassNew2 = inputNewPass.text;
+        //inputpassNow = inputNowPass.text;
+        //inputpassNew = inputNewPass.text;
+        //inputpassNew2 = inputNewPass.text;
 
-        Debug.Log("selfPass " + selfPass);
-        Debug.Log("selfId " + selfID);
-        Debug.Log("inputpassNow " + inputpassNow);
-        Debug.Log("inputpassNew " + inputpassNew);
-        Debug.Log("inputpassNew2 " + inputpassNew2);
-
-
+        //Debug.Log("selfPass " + selfPass);
+        //Debug.Log("selfId " + selfID);
+        //Debug.Log("inputpassNow " + inputpassNow);
+        //Debug.Log("inputpassNew " + inputpassNew);
+        //Debug.Log("inputpassNew2 " + inputpassNew2);
 
 
-        if (inputpassNow == selfPass)
-        {
-            Debug.Log("やったー入った");
 
-            if (inputpassNew == inputpassNew2)
+
+        //if (inputpassNow == selfPass)
+        //{
+        //    Debug.Log("やったー入った");
+
+        //    if (inputpassNew == inputpassNew2)
+        //    {
+        //        Debug.Log("やったー入った2");
+
+        //        NCMBQuery<NCMBUser> query = NCMBUser.GetQuery();
+        //        query.WhereEqualTo("objectId", selfID);
+
+        //        query.FindAsync((List<NCMBUser> userList, NCMBException b) =>
+        //        {
+        //            if (b != null)
+        //            {
+        //                UnityEngine.Debug.Log("失敗 : " + b.Message);
+        //            }
+        //            else
+        //            {
+        //                foreach (NCMBUser user in userList)
+        //                {
+        //                    Debug.Log("やったーーーー！");
+        //                    user.Password = inputpassNew;
+        //                    user.SignUpAsync((NCMBException e) => {
+
+        //                        if (e == null)
+        //                        {
+        //                           // currentPlayerName = id;
+        //                        }
+        //                        else
+        //                        {
+        //                            selfID = user.ObjectId;
+        //                            UserAuth.changePass(inputpassNew);
+        //                        }
+        //                    });
+        //                }
+        //            }
+        //        });
+        //    }
+        //}
+        //else
+        //{
+
+        //}
+
+        NCMBUser.RequestPasswordResetAsync("okakakoubu102184@gmail.com", (NCMBException e) => {
+            if (e != null)
             {
-                Debug.Log("やったー入った2");
-
-                NCMBQuery<NCMBUser> query = NCMBUser.GetQuery();
-                query.WhereEqualTo("objectId", selfID);
-
-                query.FindAsync((List<NCMBUser> userList, NCMBException b) =>
-                {
-                    if (b != null)
-                    {
-                        UnityEngine.Debug.Log("失敗 : " + b.Message);
-                    }
-                    else
-                    {
-                        foreach (NCMBUser user in userList)
-                        {
-                            Debug.Log("やったーーーー！");
-                            user.Password = inputpassNew;
-                            user.SignUpAsync((NCMBException e) => {
-
-                                if (e == null)
-                                {
-                                   // currentPlayerName = id;
-                                }
-                                else
-                                {
-                                    selfID = user.ObjectId;
-                                    UserAuth.changePass(inputpassNew);
-                                }
-                            });
-                        }
-                    }
-                });
+                UnityEngine.Debug.Log("パスワードリセット要求に失敗: " + e.ErrorMessage);
             }
-        }
-        else
-        {
-
-        }
+            else
+            {
+                UnityEngine.Debug.Log("パスワードリセット要求に成功");
+                popp.SetActive(true);
+            }
+        });
 
     }
 
