@@ -26,11 +26,10 @@ public class DP_save : MonoBehaviour
         // Input Fieldの子要素のText(=入力されたテキスト)への参照を保存
         DP = Acceleration.getDP();
         id = LogInManager.getid();
-        SaveRakugaki();
 
 
-
-
+        
+        
 
     }
 
@@ -92,12 +91,17 @@ public class DP_save : MonoBehaviour
                     //Scoreが7のオブジェクトを出力
                     foreach (NCMBObject obj in objList)
                     {
-                  
+
                         obj.DeleteAsync();
                     }
                 }
             });
         }
+
+
+
+
+
 
         _testClass = new NCMBObject(id + "currentDP");
 

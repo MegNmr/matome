@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
+using System.Linq;
 using UnityEngine.UI;
-
+using NCMB;
+using System;
 
 public class Acceleration : MonoBehaviour
 {
@@ -25,18 +25,22 @@ public class Acceleration : MonoBehaviour
     int standard = 10;
     float time = 0f;
     static int second = 0;
-    int counter = 0;
+    static int counter = 0;
+
     Image image_component = null;
     GameObject image_object = null;
     GameObject image_object2 = null;
     InputField inputField;
     Text text;
-    int mokuhyou = 500;//目標歩数
+    int mokuhyou = 0;//目標歩数
     public static int ishinokazu ;//石の数
 
     Vector3 center;
 
     List<Vector3> history = new List<Vector3>(HISMAX);
+
+    private string selfID;
+
 
     // Use this for initialization
     void Start()
@@ -49,7 +53,7 @@ public class Acceleration : MonoBehaviour
 
         image_object2.SetActive(false);
 
-
+        selfID = UserAuth.returnSelfId();
         //inputField = GameObject.Find("InputField").GetComponent<InputField>();
         //text = GameObject.Find("Message").GetComponent<Text>();
 
@@ -79,6 +83,8 @@ public class Acceleration : MonoBehaviour
         // time count end
 
         counter = second;
+
+        mokuhyou = getMokuhyo();
 
         float scale = 2f;
         Vector3 dir = Input.acceleration;
@@ -205,6 +211,41 @@ public class Acceleration : MonoBehaviour
         }
 
     }
+
+    public int getMokuhyo()
+    {
+        string _mokuhyo = null;
+        int _mokuhyoInt = 0 ;
+
+        NCMBObject _query = new NCMBObject("personalData");
+        NCMBQuery<NCMBObject> _list = new NCMBQuery<NCMBObject>("personalData");
+
+        _query = new NCMBObject("personalData");
+        _list = new NCMBQuery<NCMBObject>("personalData");
+
+        _list.WhereEqualTo("ID", selfID);
+
+        _list.FindAsync((List<NCMBObject> userList, NCMBException b) => {
+            if (b != null)
+            {
+                UnityEngine.Debug.Log("失敗 : " + b.Message);
+            }
+            else
+            {
+                foreach (NCMBObject obj in userList)
+                {
+                    _query = obj;
+
+
+                }
+            }
+        });
+
+        _mokuhyo = _query["mokuhyoWalk"].ToString();
+        _mokuhyoInt = int.Parse(_mokuhyo);
+        return _mokuhyoInt;
+    }
+
     public static int getDP()
     {
         ishinokazu = counter;
