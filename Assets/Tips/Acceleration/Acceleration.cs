@@ -29,10 +29,14 @@ public class Acceleration : MonoBehaviour
     Image image_component = null;
     GameObject image_object = null;
     GameObject image_object2 = null;
+    GameObject image_object3 = null;
     InputField inputField;
     Text text;
-    int mokuhyou=500;//目標歩数
+    public float size;
+    int mokuhyou=50;//目標歩数
     public static int ishinokazu ;//石の数
+    int hutsu=0;
+    int moderu=0;
 
     Vector3 center;
 
@@ -44,10 +48,15 @@ public class Acceleration : MonoBehaviour
         center = transform.position;
         // text = GetComponent<Text>();
         image_object = GameObject.Find("Canvas/Debu_Image/debu");
-        image_object2 = GameObject.Find("Canvas/Debu_Image/debu2");
-        Debug.Log(image_object.name);
+        image_object2 = GameObject.Find("Canvas/Debu_Image/hutsu");
+        image_object3 = GameObject.Find("Canvas/Debu_Image/moderu");
+        //Debug.Log(image_object.name);
 
         image_object2.SetActive(false);
+        image_object3.SetActive(false);
+
+        hutsu = mokuhyou / 3;
+        moderu = 2*mokuhyou / 3;
 
 
         //inputField = GameObject.Find("InputField").GetComponent<InputField>();
@@ -115,11 +124,18 @@ public class Acceleration : MonoBehaviour
         history.Add(pos);
         DrawLines();
 
-        if (count > 5)
+        if (count >= hutsu && count<moderu)
         {
             image_object.SetActive(false);
             image_object2.SetActive(true);
-            Debug.Log(image_object.name);
+            //Debug.Log(image_object.name);
+
+        }
+        if (count >= moderu )
+        {
+            image_object2.SetActive(false);
+            image_object3.SetActive(true);
+            //Debug.Log(image_object.name);
 
         }
 
@@ -151,8 +167,9 @@ public class Acceleration : MonoBehaviour
         //歩数が目標に達していないとき、円を大きくしていく
         if (mokuhyou>=count)
         {
+            size = 2*(float)count/mokuhyou;
             Transform tassei_scale = tassei.GetComponent<Transform>(); //達成円オブジェクトから Transformコンポーネント取得
-            tassei_scale.transform.localScale = new Vector3(2 * (float)count / mokuhyou, 2*(float)count / mokuhyou, 1);//円サイズの変更
+            tassei_scale.transform.localScale = new Vector3(size, size, 1);//円サイズの変更
         }
         
     
