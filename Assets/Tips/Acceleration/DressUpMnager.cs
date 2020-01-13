@@ -133,16 +133,20 @@ public class DressUpMnager : MonoBehaviour
         itemInfo.Add(0, "inter_S1");
         itemInfo.Add(1, "inter_S2");
         itemInfo.Add(2, "inter_S3");
-        itemInfo.Add(3, "inter_T1");
-        itemInfo.Add(4, "inter_T2");
-        itemInfo.Add(5, "inter_T3");
-        itemInfo.Add(6, "inter_R1");
-        itemInfo.Add(7, "inter_R2");
-        itemInfo.Add(8, "inter_R3");
-        itemInfo.Add(9, "inter_B1");
-        itemInfo.Add(10, "inter_B2");
-        itemInfo.Add(11, "inter_B3");
-
+        itemInfo.Add(3, "inter_S4");
+        itemInfo.Add(4, "inter_T1");
+        itemInfo.Add(5, "inter_T2");
+        itemInfo.Add(6, "inter_T3");
+        itemInfo.Add(7, "inter_T4");
+        itemInfo.Add(8, "inter_R1");
+        itemInfo.Add(9, "inter_R2");
+        itemInfo.Add(10, "inter_R3");
+        itemInfo.Add(11, "inter_B1");
+        itemInfo.Add(12, "inter_B2");
+        itemInfo.Add(13, "inter_B3");
+        itemInfo.Add(14, "inter_H1");
+        itemInfo.Add(15, "inter_H2");
+       
 
 
     }
