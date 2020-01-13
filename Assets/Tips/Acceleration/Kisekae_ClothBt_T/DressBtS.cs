@@ -3,41 +3,58 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DressBt : MonoBehaviour
+public class DressBtS : MonoBehaviour
 {
     GameObject TopTab;
-    Top1 top1;
-    Top2 top2;
+    
+    Pants1 top1;
+    Pants2 top2;
+    Pants3 top3;
+    Pants4 top4;
 
     GameObject image_object = null;
     GameObject image_object2 = null;
+    GameObject image_object3 = null;
+    GameObject image_object4 = null;
 
     private bool _OnOff1 = false;
     private bool _OnOff2 = false;
+    private bool _OnOff3 = false;
+    private bool _OnOff4 = false;
 
     public int aa = 6;
 
     // Start is called before the first frame update
     void Start()
     {
-        TopTab = GameObject.Find("Canvas/Tops_tab");
-        top1 = TopTab.GetComponent<Top1>();
-        top2 = TopTab.GetComponent<Top2>();
+        
+        TopTab = GameObject.Find("Canvas/Pants_tab");
+        top1 = TopTab.GetComponent<Pants1>();
+        top2 = TopTab.GetComponent<Pants2>();
+        top3 = TopTab.GetComponent<Pants3>();
+        top4 = TopTab.GetComponent<Pants4>();
 
-        image_object = GameObject.Find("kodomofuku_boy");
+        image_object = GameObject.Find("inter_S1");
         image_object.SetActive(false);
-        image_object2 = GameObject.Find("kodomofuku_girl");
+        image_object2 = GameObject.Find("inter_S2");
         image_object2.SetActive(false);
+        image_object3 = GameObject.Find("inter_S3");
+        image_object3.SetActive(false);
+        image_object4 = GameObject.Find("inter_S4");
+        image_object4.SetActive(false);
 
-        Debug.Log(image_object2);
+        //  Debug.Log(image_object2);
 
     }
+    
 
     // Update is called once per frame
     void Update()
     {
         _OnOff1 = top1._OnOff();
         _OnOff2 = top2._OnOff();
+        _OnOff3 = top3._OnOff();
+        _OnOff4 = top4._OnOff();
 
         //Debug.Log(_OnOff1);
         //Debug.Log(_OnOff2);
@@ -58,6 +75,25 @@ public class DressBt : MonoBehaviour
         else if (_OnOff2 == false)
         {
             image_object2.SetActive(false);
+        }
+
+        if (_OnOff3 == true)
+        {
+            image_object3.SetActive(true);
+        }
+        else if (_OnOff3 == false)
+        {
+            image_object3.SetActive(false);
+        }
+
+
+        if (_OnOff4 == true)
+        {
+            image_object4.SetActive(true);
+        }
+        else if (_OnOff4 == false)
+        {
+            image_object4.SetActive(false);
         }
 
     }

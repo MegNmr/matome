@@ -7,6 +7,8 @@ public class Top2 : MonoBehaviour
 {
     GameObject TopTab;
     Top1 top1;
+    Top3 top3;
+    Top4 top4;
 
     public bool OnOff2 = false;
 
@@ -15,8 +17,11 @@ public class Top2 : MonoBehaviour
     {
         TopTab = GameObject.Find("Canvas/Tops_tab");
         top1 = TopTab.GetComponent<Top1>();
+        top3 = TopTab.GetComponent<Top3>();
+        top4 = TopTab.GetComponent<Top4>();
 
         OnOff2 = false;
+        
     }
 
     // Update is called once per frame
@@ -32,17 +37,19 @@ public class Top2 : MonoBehaviour
 
     public void ClickThisButton()
     {
+        top1._switch(false);
+        top3._switch(false);
+        top4._switch(false);
+
         if (OnOff2 == true)
         {
+            
             OnOff2 = false;
+            
+
         }
         else if (OnOff2 == false)
         {
-            if (top1._OnOff() == true)
-            {
-                top1._switch(false);
-            }
-
             OnOff2 = true;
         }
     }

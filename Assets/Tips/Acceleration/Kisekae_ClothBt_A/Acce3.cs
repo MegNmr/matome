@@ -3,20 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Top1 : MonoBehaviour
+public class Acce3 : MonoBehaviour
 {
     GameObject TopTab;
-    Top2 top2;
+    Acce1 top1;
+    Acce2 top2;
+   
 
-    private bool OnOff1;
-    
+    public bool OnOff3;
+
     // Start is called before the first frame update
     void Start()
     {
-        TopTab = GameObject.Find("Canvas/Tops_tab");
-        top2 = TopTab.GetComponent<Top2>();
+        TopTab = GameObject.Find("Canvas/Accessory_tab");
+        top1 = TopTab.GetComponent<Acce1>();
+        top2 = TopTab.GetComponent<Acce2>();
+      
 
-        OnOff1 = false;
+        OnOff3 = false;
     }
 
     // Update is called once per frame
@@ -33,27 +37,29 @@ public class Top1 : MonoBehaviour
     }
     public void ClickThisButton()
     {
-        if (OnOff1 == true)
+
+        top1._switch(false);
+        top2._switch(false);
+       
+        if (OnOff3 == true)
         {
-            OnOff1 = false;
+            OnOff3 = false;
+           
         }
-        else if (OnOff1 == false)
+        else if (OnOff3 == false)
         {
-            if (top2._OnOff() == true)
-            {
-                top2._switch(false);
-            }
-            OnOff1 = true;
+           
+            OnOff3 = true;
         }
     }
 
     public bool _OnOff()
     {
-        return OnOff1;
+        return OnOff3;
     }
 
     public void _switch(bool switcher)
     {
-        OnOff1 = switcher;
+        OnOff3 = switcher;
     }
 }
