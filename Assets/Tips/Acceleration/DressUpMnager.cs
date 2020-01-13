@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using NCMB;
 
-public class tab_kirikae : MonoBehaviour
+public class DressUpMnager : MonoBehaviour
 {
     private GameObject Canvas;
     private GameObject Head;   // ログインテキスト
@@ -12,13 +12,15 @@ public class tab_kirikae : MonoBehaviour
     private GameObject Pants;
     private GameObject Top;
     private GameObject HeadItem;
-    private string id= LogInManager.getid();
-    
-   
+    private string id = LogInManager.getid();
+
+
     // アイテムのデータを保持する辞書
     public static Dictionary<int, string> itemInfo;
+    public static Dictionary<int, bool> _itemInfo;
+
     public static Dictionary<int, int> itemData;
-   
+
     public static int itemId;
     public static string itemName;
     float time = 0f;
@@ -29,34 +31,40 @@ public class tab_kirikae : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Canvas = GameObject.Find("Canvas");
-        Head = Canvas.transform.Find("Head").gameObject;
+        Canvas = GameObject.Find("Head_tab");
+        Head = Canvas.transform.Find("Image").gameObject;
+
+
         Leg = Canvas.transform.Find("Leg").gameObject;
+
+
         Pants = Canvas.transform.Find("Pants").gameObject;
+
+
         Top = Canvas.transform.Find("Top").gameObject;
-       
+
 
         list();
-        
+
 
         // HeadItem = Canvas.transform.Find("Head/" + itemName).gameObject;
 
 
         itemData = new Dictionary<int, int>();
-        
-        
+
+
         for (int i = 0; i < 12; i++)
         {
             list_data(i);
             Gacha_result(i, id);
-            
+
 
         }
 
-       
 
 
-       // OnClick_Head();
+
+        // OnClick_Head();
 
 
 
@@ -101,7 +109,7 @@ public class tab_kirikae : MonoBehaviour
 
     }
     // Update is called once per frame
-   
+
 
     void Update()
     {
@@ -109,10 +117,10 @@ public class tab_kirikae : MonoBehaviour
         time += Time.deltaTime;//毎フレームの時間を加算.
         int minute = (int)time / 60;//分.timeを60で割った値.
         second = (int)time % 60;//秒.timeを60で割った余り.
-        
+
         if (second == 1)
         {
-            
+
             OnClick_Head();
             Debug.Log("こんちわー");
 
@@ -120,7 +128,8 @@ public class tab_kirikae : MonoBehaviour
     }
 
 
-    void list() {
+    void list()
+    {
 
         itemInfo = new Dictionary<int, string>();
         itemInfo.Add(0, "inter_S1");
@@ -139,23 +148,45 @@ public class tab_kirikae : MonoBehaviour
         itemInfo.Add(13, "inter_B3");
         itemInfo.Add(14, "inter_H1");
         itemInfo.Add(15, "inter_H2");
+       
 
 
+    }
+
+    void _list()
+    {
+        _itemInfo = new Dictionary<int, bool>();
+        _itemInfo.Add(0, false);
+        _itemInfo.Add(1, false);
+        _itemInfo.Add(2, false);
+        _itemInfo.Add(3, false);
+        _itemInfo.Add(4, false);
+        _itemInfo.Add(5, false);
+        _itemInfo.Add(6, false);
+        _itemInfo.Add(7, false);
+        _itemInfo.Add(8, false);
+        _itemInfo.Add(9, false);
+        _itemInfo.Add(10, false);
+        _itemInfo.Add(11, false);
+        _itemInfo.Add(12, false);
+        _itemInfo.Add(13, false);
+        _itemInfo.Add(14, false);
+        _itemInfo.Add(15, false);
 
     }
 
     void list_data(int number)
     {
 
-        
+
         itemData.Add(number, 0);
-        
+
 
 
 
     }
 
-   
+
 
     public void OnClick_Head()
     {
@@ -165,26 +196,30 @@ public class tab_kirikae : MonoBehaviour
         Top.SetActive(false);
         Head.SetActive(true);
 
-        for (int i = 6; i < 9; i++) {
+        for (int i = 6; i < 9; i++)
+        {
             itemName = itemInfo[i];
             ARUKA = itemData[i];
 
-            Debug.Log(i.ToString()+ " " + ARUKA.ToString());
+            Debug.Log(i.ToString() + " " + ARUKA.ToString());
             HeadItem = Canvas.transform.Find("Head/" + itemName).gameObject;
             if (ARUKA == 1)
             {
                 HeadItem.SetActive(true);
+                _itemInfo[i] = true;
             }
-            else {
+            else
+            {
                 HeadItem.SetActive(false);
+                _itemInfo[i] = false;
             }
 
-           
-          }
+
+        }
 
 
 
-        
+
 
 
 
@@ -208,15 +243,17 @@ public class tab_kirikae : MonoBehaviour
             if (ARUKA == 1)
             {
                 HeadItem.SetActive(true);
+                _itemInfo[i] = true;
             }
             else
             {
                 HeadItem.SetActive(false);
+                _itemInfo[i] = false;
             }
 
 
         }
-       
+
 
     }
 
@@ -237,15 +274,17 @@ public class tab_kirikae : MonoBehaviour
             if (ARUKA == 1)
             {
                 HeadItem.SetActive(true);
+                _itemInfo[i] = true;
             }
             else
             {
                 HeadItem.SetActive(false);
+                _itemInfo[i] = false;
             }
 
 
         }
-       
+
 
     }
 
@@ -266,14 +305,26 @@ public class tab_kirikae : MonoBehaviour
             if (ARUKA == 1)
             {
                 HeadItem.SetActive(true);
+                _itemInfo[i] = true;
             }
             else
             {
                 HeadItem.SetActive(false);
+                _itemInfo[i] = false;
             }
 
 
         }
-       
+
+    }
+
+    public static Dictionary<int, bool> returnList()
+    {
+        return _itemInfo;
+    }
+
+    public static Dictionary<int, string> returnListItem()
+    {
+        return itemInfo;
     }
 }
