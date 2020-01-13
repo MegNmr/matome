@@ -25,13 +25,13 @@ public class Acceleration : MonoBehaviour
     int standard = 10;
     float time = 0f;
     static int second = 0;
-    //int counter = 0;
+    int counter = 0;
     Image image_component = null;
     GameObject image_object = null;
     GameObject image_object2 = null;
     InputField inputField;
     Text text;
-    int mokuhyou=500;//目標歩数
+    int mokuhyou = 500;//目標歩数
     public static int ishinokazu ;//石の数
 
     Vector3 center;
@@ -78,6 +78,7 @@ public class Acceleration : MonoBehaviour
 
         // time count end
 
+        counter = second;
 
         float scale = 2f;
         Vector3 dir = Input.acceleration;
@@ -137,15 +138,23 @@ public class Acceleration : MonoBehaviour
         ishi_text.text = ishinokazu.ToString();
 
         // オブジェクトからTextコンポーネントを取得
-        Text makuhyou_text = mokuhyou_obj.GetComponent<Text>();
+        if (mokuhyou_obj != null)
+        {
+            Text makuhyou_text = mokuhyou_obj.GetComponent<Text>();
+            makuhyou_text.text = mokuhyou.ToString();
+        }
         // 石の個数の表示を入れ替える
-        makuhyou_text.text = mokuhyou.ToString();
+        //makuhyou_text.text = mokuhyou.ToString();
 
+        if (DATE_obj != null)
+        {
+            // オブジェクトからTextコンポーネントを取得
+            Text date_text = DATE_obj.GetComponent<Text>();
+            date_text.text = DateTime.Now.ToString("yyyy/MM/dd");
 
-        // オブジェクトからTextコンポーネントを取得
-        Text date_text = DATE_obj.GetComponent<Text>();
+        }
         //歩数の表示を入れ替える
-        date_text.text = DateTime.Now.ToString("yyyy/MM/dd");
+        //date_text.text = DateTime.Now.ToString("yyyy/MM/dd");
 
 
         //歩数が目標に達していないとき、円を大きくしていく
@@ -198,6 +207,7 @@ public class Acceleration : MonoBehaviour
     }
     public static int getDP()
     {
+        ishinokazu = counter;
         return ishinokazu;
     }
 }

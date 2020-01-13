@@ -22,6 +22,6 @@ public class Gatch_scene : MonoBehaviour
     public void OnRetry()
     {
         // 「ButtonScene」を自分の読み込みたいscene名に変える
-        SceneManager.LoadScene("gacha");
+        SceneManager.LoadScene("TestAcceleration");
     }
 }

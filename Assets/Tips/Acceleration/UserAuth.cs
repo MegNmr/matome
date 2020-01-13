@@ -1,13 +1,19 @@
-﻿using UnityEngine;
-using System.Collections;
-using NCMB;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
+using UnityEngine.UI;
+using NCMB;
+using System;
 
 
 public class UserAuth : MonoBehaviour
 {
-    public int flage;
-    private string currentPlayerName;
+
+    private static string currentPlayerName;
+    private static string selfID;
+    private static string selfPass;
+    private static string selfMail;
 
     // mobile backendに接続してログイン ------------------------
 
@@ -18,9 +24,34 @@ public class UserAuth : MonoBehaviour
             // 接続成功したら
             if (e == null)
             {
-                flage = 4;
                 currentPlayerName = id;
+
+
+                NCMBQuery<NCMBUser> query = NCMBUser.GetQuery();
+                query.WhereEqualTo("userName", id);
+                query.FindAsync((List<NCMBUser> userList, NCMBException b) => {
+                    if (b != null)
+                    {
+                        UnityEngine.Debug.Log("失敗 : " + b.Message);
+                    }
+                    else
+                    {
+                       // Debug.Log("やったーーーー！");
+                        foreach (NCMBUser user in userList)
+                        {
+                            //Debug.Log("やったーーーー！");
+                            //UnityEngine.Debug.Log("ユーザー名: " + user.UserName);
+                            selfID = user.ObjectId;
+                            selfPass = pw;
+                            selfMail = user.Email;
+                            //Debug.Log("login " + selfID);
+                        }
+                    }
+                });
+
+
             }
+
         });
     }
 
@@ -38,6 +69,12 @@ public class UserAuth : MonoBehaviour
             if (e == null)
             {
                 currentPlayerName = id;
+            }
+            else
+            {
+                selfID = user.ObjectId;
+                selfPass = pw;
+                selfMail = mail;
             }
         });
     }
@@ -89,5 +126,41 @@ public class UserAuth : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    public static string returnSelfId()
+    {
+        return selfID;
+    }
+
+    public static string returnSelfPass()
+    {
+        return selfPass;
+    }
+
+    public static string returnSelfMail()
+    {
+        return selfMail;
+    }
+
+    public static void changePass(string newpass)
+    {
+        selfPass = newpass;
+    }
+
+    public static void changeMail(string newmail)
+    {
+        selfMail = newmail;
+    }
+
+    public static void logout()
+    {
+
+        NCMBUser.LogOutAsync((NCMBException e) => {
+            if (e == null)
+            {
+                currentPlayerName = null;
+            }
+        });
     }
 }

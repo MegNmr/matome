@@ -44,7 +44,6 @@ public class Head_Tab : MonoBehaviour
     void Update()
     {
         bool OnOff = script._OnOff();
-        Debug.Log("Head " + OnOff);
 
         if(script.returnFlag() == true)
         {
@@ -54,17 +53,13 @@ public class Head_Tab : MonoBehaviour
                 script3._swtich(false);
                 script4._swtich(false);
                 script5._swtich(false);
-
             }
 
             if (OnOff == true)
-            {
-                Debug.Log("head script2 " + script2._OnOff());
-
+            {            
                 tab.SetActive(true);
                 animator.enabled = true;
                 animator.Play("aa");
-
             }
 
            script._switchFlag(false);
@@ -73,12 +68,9 @@ public class Head_Tab : MonoBehaviour
         {
             if (OnOff == true)
             {
-                Debug.Log("head script2 2 " + script2._OnOff());
-
                 tab.SetActive(true);
                 animator.enabled = true;
-                animator.Play("aa");
-
+                animator.Play("aa");            
             }
             else if (OnOff == false)
             {

@@ -46,7 +46,6 @@ public class Top_Tab : MonoBehaviour
     void Update()
     {
         bool OnOff = script._OnOff();
-        Debug.Log("Tops " + OnOff);
 
         if (script.returnFlag() == true)
         {
@@ -61,12 +60,9 @@ public class Top_Tab : MonoBehaviour
 
             if (OnOff == true)
             {
-                Debug.Log("top script2 " + script2._OnOff());
-
                 tab.SetActive(true);
                 animator.enabled = true;
                 animator.Play("aa");
-
             }
 
             script._switchFlag(false);
@@ -76,18 +72,14 @@ public class Top_Tab : MonoBehaviour
         {
             if (OnOff == true)
             {
-                Debug.Log("top script2 2 " + script2._OnOff());
-
                 tab.SetActive(true);
                 animator.enabled = true;
                 animator.Play("aa");
-
             }
             else if (OnOff == false)
             {
                 tab.SetActive(false);
                 animator.enabled = false;
-
             }
         }
 

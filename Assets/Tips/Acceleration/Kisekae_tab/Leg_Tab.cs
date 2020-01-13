@@ -43,7 +43,6 @@ public class Leg_Tab : MonoBehaviour
     void Update()
     {
         bool OnOff = script._OnOff();
-        Debug.Log("Head " + OnOff);
 
         if (script.returnFlag() == true)
         {
@@ -58,12 +57,9 @@ public class Leg_Tab : MonoBehaviour
 
             if (OnOff == true)
             {
-                Debug.Log("head script2 " + script2._OnOff());
-
                 tab.SetActive(true);
                 animator.enabled = true;
                 animator.Play("aa");
-
             }
 
             script._switchFlag(false);
@@ -73,12 +69,9 @@ public class Leg_Tab : MonoBehaviour
         {
             if (OnOff == true)
             {
-                Debug.Log("head script2 2 " + script2._OnOff());
-
                 tab.SetActive(true);
                 animator.enabled = true;
                 animator.Play("aa");
-
             }
             else if (OnOff == false)
             {
