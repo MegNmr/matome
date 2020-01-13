@@ -25,7 +25,7 @@ public class Setting_scene : MonoBehaviour
     public void OnRetry()
     {
         // 「ButtonScene」を自分の読み込みたいscene名に変える
-        SceneManager.LoadScene("TestAcceleration");
+        SceneManager.LoadScene("Setting");
     }
 }
 

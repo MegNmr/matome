@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class walk_button : MonoBehaviour
+public class output : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()

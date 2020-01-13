@@ -3009,7 +3009,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 43a4cd9e360d7df49a73ee7cb0a0888c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24e2bb808cabbad40830d36e3ce8bdd5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3957,7 +3957,7 @@ GUIText:
   m_GameObject: {fileID: 1713618014}
   m_Enabled: 1
   serializedVersion: 3
-  m_Text: "\u30BF\u30A4\u30C8\u30EB"
+  m_Text: "\u304C\u3061\u3083\u3044\u3048\u3063\u3068\uFF01"
   m_Anchor: 4
   m_Alignment: 0
   m_PixelOffset: {x: 0, y: 0}
@@ -3965,11 +3965,11 @@ GUIText:
   m_TabSize: 4
   m_Font: {fileID: 12800000, guid: 1dbcee6b3612a8b4babbf2a7e74824e7, type: 3}
   m_Material: {fileID: 0}
-  m_FontSize: 200
-  m_FontStyle: 0
+  m_FontSize: 190
+  m_FontStyle: 2
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4281331199
   m_PixelCorrect: 1
   m_RichText: 1
 --- !u!4 &1713618016

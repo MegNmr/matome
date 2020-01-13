@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
+using NCMB;
 
 
 public class test1 : MonoBehaviour
@@ -19,11 +21,21 @@ public class test1 : MonoBehaviour
     public static int flag = 0;
 
     public static Image image;
+
+    private static NCMBObject _testClass;
+    private static NCMBQuery<NCMBObject> _query;
+    private static string id;
+    static string pw;
+
+
     void Start()
     {
         // GetDropItem();
         image = this.GetComponent<Image>();
         image.enabled = false;
+
+
+        id = LogInManager.getid();
     }
 
     void Update()
@@ -34,12 +46,8 @@ public class test1 : MonoBehaviour
             if ((flag == 0) || (flag == 1))
             {
                 GetDropItem();
-                
+
             }
-
-
-            
-
 
         }
     }
@@ -49,10 +57,11 @@ public class test1 : MonoBehaviour
 
         if (flag == 1)
         {
+            SaveRakugaki();
             Application.LoadLevel("gacha_result");
 
             flag = 0;
-            
+
         }
         else
         {
@@ -60,11 +69,14 @@ public class test1 : MonoBehaviour
             InitializeDicts();
 
             // ドロップアイテムの抽選
+
+
             itemId = Choose();
 
             // アイテムIDに応じたメッセージ出力
             if (itemId != 7)
             {
+
                 itemName = itemInfo[itemId];
                 Debug.Log(itemName + " を入手した!");
 
@@ -151,8 +163,59 @@ public class test1 : MonoBehaviour
         }
         return 0;
     }
-}
 
+
+    public static void SaveRakugaki()
+    {
+
+
+
+        _query = new NCMBQuery<NCMBObject>(id + "gacha_result");
+
+        // 保存されているデータ件数を取得
+        _query.CountAsync((int count, NCMBException e) =>
+        {
+            if (e != null)
+            {
+                //件数取得失敗時の処理
+                Debug.Log("件数の取得に失敗しました");
+            }
+            else
+            {
+                //データ件数が取得できていたらサーバにデータを送る
+                SendRakugakiData(count);
+            }
+        });
+
+
+    }
+
+    static void SendRakugakiData(int count)
+    {
+
+        FindObjectOfType<UserAuth>().logIn(id, pw);
+        _testClass = new NCMBObject(id + "gacha_result");
+
+
+        _testClass["id"] = count + 1; // データ保存件数に+1して連番のidを作成
+        _testClass["message"] = itemId; // 入力されたテキストをセットで設定
+
+        // データストアへデータを登録する
+        _testClass.SaveAsync((NCMBException e) =>
+        {
+            if (e != null)
+            {
+
+                Debug.Log("データの保存に失敗しました");
+            }
+            else
+            {
+
+                Debug.Log("データの保存に成功しました");
+            }
+        });
+    }
+}
 /*
 //probsは確率表記をいれた配列[50,30,10,5]
 
