@@ -45,7 +45,7 @@ public class tab_kirikae : MonoBehaviour
         itemData = new Dictionary<int, int>();
         
         
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < 16; i++)
         {
             list_data(i);
             Gacha_result(i, id);
@@ -165,7 +165,7 @@ public class tab_kirikae : MonoBehaviour
         Top.SetActive(false);
         Head.SetActive(true);
 
-        for (int i = 6; i < 9; i++) {
+        for (int i = 8; i < 11; i++) {
             itemName = itemInfo[i];
             ARUKA = itemData[i];
 
@@ -198,7 +198,7 @@ public class tab_kirikae : MonoBehaviour
         Pants.SetActive(false);
         Top.SetActive(false);
 
-        for (int i = 9; i < 12; i++)
+        for (int i = 11; i < 14; i++)
         {
             itemName = itemInfo[i];
             ARUKA = itemData[i];
@@ -227,7 +227,7 @@ public class tab_kirikae : MonoBehaviour
         Pants.SetActive(true);
         Top.SetActive(false);
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             itemName = itemInfo[i];
             ARUKA = itemData[i];
@@ -256,7 +256,7 @@ public class tab_kirikae : MonoBehaviour
         Pants.SetActive(false);
         Top.SetActive(true);
 
-        for (int i = 3; i < 6; i++)
+        for (int i = 4; i < 8; i++)
         {
             itemName = itemInfo[i];
             ARUKA = itemData[i];

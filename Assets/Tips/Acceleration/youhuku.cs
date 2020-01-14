@@ -24,13 +24,16 @@ public class youhuku : MonoBehaviour
     public static string itemName;
     float time = 0f;
     static int second = 0;
+    string selfID;
 
 
     int ARUKA;
     // Start is called before the first frame update
     void Start()
     {
-        
+        selfID = UserAuth.returnSelfId();
+        getHuku();
+
     }
 
     void Update()
@@ -64,6 +67,8 @@ public class youhuku : MonoBehaviour
         _query = new NCMBObject("personalData");
         _list = new NCMBQuery<NCMBObject>("personalData");
         _list.WhereEqualTo("ID", selfID);
+
+        Debug.Log(UserAuth.returnSelfId() + "あるよおおおおおお");
         _list.FindAsync((List<NCMBObject> userList, NCMBException b) => {
             if (b != null)
             {
@@ -73,27 +78,60 @@ public class youhuku : MonoBehaviour
             {
                 foreach (NCMBObject obj in userList)
                 {
+                    Debug.Log(obj["Top"]);
+                    
                     _query = obj;
+                    UnityEngine.Debug.Log("失敗 : " + b.Message);
                 }
             }
         });
 
-       // head = _query["Head"].ToString();
-        top = _query["Top"].ToString();
-        pants = _query["Pants"].ToString();
-        leg = _query["Leg"].ToString();
-        acce = _query["Acce"].ToString();
+        Debug.Log(_query["Top"]+"あるよおおおおおお");
 
         Image = GameObject.Find("Image");
-        Top = Image.transform.Find(top).gameObject;
-        Pants = Image.transform.Find(pants).gameObject;
-        Leg = Image.transform.Find(leg).gameObject;
-        Acce = Image.transform.Find(acce).gameObject;
+        
+            // head = _query["Head"].ToString();
+            top = _query["Top"].ToString();
+            Top = Image.transform.Find(top).gameObject;
+            Top.SetActive(true);
 
-        Top.SetActive(true);
-        Pants.SetActive(true);
-        Leg.SetActive(true);
-        Acce.SetActive(true);
+
+         // head = _query["Head"].ToString();
+            pants = _query["Pants"].ToString();
+            Pants = Image.transform.Find(pants).gameObject;
+            Pants.SetActive(true);
+
+        
+            // head = _query["Head"].ToString();
+            leg = _query["Leg"].ToString();
+            Leg = Image.transform.Find(leg).gameObject;
+            Leg.SetActive(true);
+          
+
+        
+            // head = _query["Head"].ToString();
+            acce = _query["Acce"].ToString();
+            Acce = Image.transform.Find(acce).gameObject;
+            Acce.SetActive(true);
+            
+
+        
+
+
+
+
+       
+
+        
+        
+       
+       
+        
+
+        
+       
+      
+       
 
 
 
