@@ -18,6 +18,7 @@ public class DressUpMnager : MonoBehaviour
     // アイテムのデータを保持する辞書
     public static Dictionary<int, string> itemInfo;
     public static Dictionary<int, int> itemData;
+    public static Dictionary<int, bool> _itemInfo;
 
     public static int itemId;
     public static string itemName;
@@ -151,6 +152,28 @@ public class DressUpMnager : MonoBehaviour
 
     }
 
+    void _list()
+    {
+        _itemInfo = new Dictionary<int, bool>();
+        _itemInfo.Add(0, false);
+        _itemInfo.Add(1, false);
+        _itemInfo.Add(2, false);
+        _itemInfo.Add(3, false);
+        _itemInfo.Add(4, false);
+        _itemInfo.Add(5, false);
+        _itemInfo.Add(6, false);
+        _itemInfo.Add(7, false);
+        _itemInfo.Add(8, false);
+        _itemInfo.Add(9, false);
+        _itemInfo.Add(10, false);
+        _itemInfo.Add(11, false);
+        _itemInfo.Add(12, false);
+        _itemInfo.Add(13, false);
+        _itemInfo.Add(14, false);
+        _itemInfo.Add(15, false);
+
+    }
+
     void list_data(int number)
     {
 
@@ -182,10 +205,12 @@ public class DressUpMnager : MonoBehaviour
             if (ARUKA == 1)
             {
                 HeadItem.SetActive(true);
+                _itemInfo[i] = true;
             }
             else
             {
                 HeadItem.SetActive(false);
+                _itemInfo[i] = false;
             }
 
 
@@ -217,10 +242,12 @@ public class DressUpMnager : MonoBehaviour
             if (ARUKA == 1)
             {
                 HeadItem.SetActive(true);
+                _itemInfo[i] = true;
             }
             else
             {
                 HeadItem.SetActive(false);
+                _itemInfo[i] = false;
             }
 
 
@@ -246,10 +273,12 @@ public class DressUpMnager : MonoBehaviour
             if (ARUKA == 1)
             {
                 HeadItem.SetActive(true);
+                _itemInfo[i] = true;
             }
             else
             {
                 HeadItem.SetActive(false);
+                _itemInfo[i] = false;
             }
 
 
@@ -275,14 +304,25 @@ public class DressUpMnager : MonoBehaviour
             if (ARUKA == 1)
             {
                 HeadItem.SetActive(true);
+                _itemInfo[i] = true;
             }
             else
             {
                 HeadItem.SetActive(false);
+                _itemInfo[i] = false;
             }
 
 
         }
 
+    }
+    public static Dictionary<int, bool> returnList()
+    {
+        return _itemInfo;
+    }
+
+    public static Dictionary<int, string> returnListItem()
+    {
+        return itemInfo;
     }
 }

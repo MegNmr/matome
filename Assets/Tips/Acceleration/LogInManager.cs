@@ -1,7 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
+using NCMB;
+using System;
+
 
 public class LogInManager : MonoBehaviour
 {
@@ -19,7 +23,7 @@ public class LogInManager : MonoBehaviour
     private bool backButton;
 
     // テキストボックスで入力される文字列を格納
-    public static string id;
+    static string id;
     static string pw;
     static string mail;
 
@@ -29,7 +33,9 @@ public class LogInManager : MonoBehaviour
     private GameObject OYA;
     private GameObject FALSE_OBJ_LOGIN;
     private GameObject FALSE_OBJ_SignUp;
-   
+    static int number;
+    static string selfID;
+
 
 
 
@@ -37,7 +43,7 @@ public class LogInManager : MonoBehaviour
 
     int flage = 3;
     InputField inputField;
-
+    
 
     void Start()
     {
@@ -85,14 +91,11 @@ public class LogInManager : MonoBehaviour
 
     public void TextReflect_ID()
     {
-        inputfield = GameObject.Find("InputField_ID");
-        inputtext = GameObject.Find("InputField_ID/Text");
-        playertext = GameObject.Find("InputField_ID/Placeholder");
+        inputField = GetComponent<InputField>();
+        string inputValue = inputField.text;
 
-        temp = inputtext.GetComponent<Text>().text;
-        playertext.GetComponent<Text>().text = temp;
-        id = playertext.GetComponent<Text>().text;
-        Debug.Log(id);
+        Debug.Log(inputValue);
+        id = inputValue;
         // ログを出力
         // inputfield.SetActive(false);
     }
@@ -112,14 +115,13 @@ public class LogInManager : MonoBehaviour
 
     public void TextReflect_MAIL()
     {
-        inputfield = GameObject.Find("InputField_MAIL");
-        inputtext = GameObject.Find("InputField_MAIL/Text");
-        playertext = GameObject.Find("InputField_MAIL/Placeholder");
 
-        temp = inputtext.GetComponent<Text>().text;
-        playertext.GetComponent<Text>().text = temp;
-        mail = playertext.GetComponent<Text>().text;
-        //  inputfield.SetActive(false);
+        inputField = GetComponent<InputField>();
+        string inputValue = inputField.text;
+
+        Debug.Log(inputValue);
+        mail = inputValue;
+
     }
 
     public void InputLogger()
@@ -132,6 +134,8 @@ public class LogInManager : MonoBehaviour
 
 
     }
+
+    
     // ログインボタンが押されたら
     public void OnClick_login()
     {
@@ -154,11 +158,60 @@ public class LogInManager : MonoBehaviour
     // 新規登録ボタンが押されたら
     public void OnClick_SignUp()
     {
+        Debug.Log(id);
+        Debug.Log(mail);
+        Debug.Log(pw);
         FindObjectOfType<UserAuth>().signUp(id, mail, pw);
+
 
         // currentPlayerを毎フレーム監視し、ログインが完了したら
 
         flage = 1;
+
+
+        NCMBObject _query = new NCMBObject("personalData");
+        _query["Number"] = number;
+        _query["ID"] = id;
+        _query["Higher"] = 0;
+        _query["Weight"] = 0;
+        _query["mokuhyoWight"] = 0;
+        _query["mokuhyoWalk"] = 0;
+        //_query["Head"] = 0;
+        _query["Top"] = "Image_toumei";
+        _query["Pants"] = "Image_toumei";
+        _query["Leg"] = "Image_toumei";
+        _query["Acce"] = "Image_toumei";
+
+        _query.SaveAsync((NCMBException c) => {
+            if (c != null)
+            {
+                //エラー処理
+                Debug.Log("error");
+            }
+            else
+            {
+                selfID = _query.ObjectId;
+                _query.SaveAsync((NCMBException e) => {
+                    if (c != null)
+                    {
+                        //エラー処理
+                        Debug.Log("error");
+                    }
+                    else
+                    {
+                        _query["SelfID"] = selfID;
+                        //成功時の処理
+
+                    }
+                });
+                //成功時の処理
+
+            }
+        });
+
+        number += 1;
+
+
 
 
 
