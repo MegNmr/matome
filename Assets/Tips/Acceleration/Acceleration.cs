@@ -25,7 +25,7 @@ public class Acceleration : MonoBehaviour
     int standard = 10;
     float time = 0f;
     static int second = 0;
-    //int counter = 0;
+    static int counter = 0;
     Image image_component = null;
     GameObject image_object = null;
     GameObject image_object2 = null;
@@ -86,7 +86,7 @@ public class Acceleration : MonoBehaviour
         // text.text = "[Time] " + minText + ":" + secText;
 
         // time count end
-
+        counter = second;
 
         float scale = 2f;
         Vector3 dir = Input.acceleration;
@@ -215,6 +215,7 @@ public class Acceleration : MonoBehaviour
     }
     public static int getDP()
     {
+        ishinokazu += 2 * counter;
         return ishinokazu;
     }
 }

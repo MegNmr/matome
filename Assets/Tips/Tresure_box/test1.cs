@@ -66,7 +66,7 @@ public class test1 : MonoBehaviour
         else
         {
             // 各種辞書の初期化
-            InitializeDicts();
+            list();
 
             // ドロップアイテムの抽選
 
@@ -74,7 +74,7 @@ public class test1 : MonoBehaviour
             itemId = Choose();
 
             // アイテムIDに応じたメッセージ出力
-            if (itemId != 7)
+            if (itemId != 16)
             {
 
                 itemName = itemInfo[itemId];
@@ -113,16 +113,28 @@ public class test1 : MonoBehaviour
 
 
 
-    public static void InitializeDicts()
+    public static void list()
     {
-        itemInfo = new Dictionary<int, string>();
-        itemInfo.Add(0, "inter_S1");
-        itemInfo.Add(1, "inter_S2");
-        itemInfo.Add(2, "inter_S3");
-        itemInfo.Add(3, "inter_T1");
-        itemInfo.Add(4, "inter_T2");
-        itemInfo.Add(5, "inter_T3");
-        itemInfo.Add(6, "inter_R1");
+        
+        
+            itemInfo = new Dictionary<int, string>();
+            itemInfo.Add(0, "inter_S1");
+            itemInfo.Add(1, "inter_S2");
+            itemInfo.Add(2, "inter_S3");
+            itemInfo.Add(3, "inter_S4");
+            itemInfo.Add(4, "inter_T1");
+            itemInfo.Add(5, "inter_T2");
+            itemInfo.Add(6, "inter_T3");
+            itemInfo.Add(7, "inter_T4");
+            itemInfo.Add(8, "inter_R1");
+            itemInfo.Add(9, "inter_R2");
+            itemInfo.Add(10, "inter_R3");
+            itemInfo.Add(11, "inter_B1");
+            itemInfo.Add(12, "inter_B2");
+            itemInfo.Add(13, "inter_B3");
+            itemInfo.Add(14, "inter_H1");
+            itemInfo.Add(15, "inter_H2");
+        
 
         itemDropDict = new Dictionary<int, float>();
         itemDropDict.Add(0, 10.0f);
@@ -132,6 +144,15 @@ public class test1 : MonoBehaviour
         itemDropDict.Add(4, 10.0f);
         itemDropDict.Add(5, 10.0f);
         itemDropDict.Add(6, 10.0f);
+        itemDropDict.Add(7, 10.0f);
+        itemDropDict.Add(8, 10.0f);
+        itemDropDict.Add(9, 10.0f);
+        itemDropDict.Add(10, 10.0f);
+        itemDropDict.Add(11, 10.0f);
+        itemDropDict.Add(12, 10.0f);
+        itemDropDict.Add(13, 10.0f);
+        itemDropDict.Add(14, 10.0f);
+        itemDropDict.Add(15, 10.0f);
     }
 
     public static int Choose()
