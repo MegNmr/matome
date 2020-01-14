@@ -14,6 +14,7 @@ public class DP_save : MonoBehaviour
 
     // NCMBを利用するためのクラス
     private NCMBObject _testClass;
+    
     private NCMBQuery<NCMBObject> _query;
     private NCMBObject deleteClass;
 
@@ -25,8 +26,11 @@ public class DP_save : MonoBehaviour
     {
         // Input Fieldの子要素のText(=入力されたテキスト)への参照を保存
         DP = Acceleration.getDP();
-        id = LogInManager.getid();
-        SaveRakugaki();
+
+       id = LogInManager.getid();
+       
+
+
 
 
 
@@ -43,25 +47,28 @@ public class DP_save : MonoBehaviour
 
         // ここからデータの保存処理開始
         // 検索にはNCMBQueryを使う
+
         
-       
 
 
-        _query = new NCMBQuery<NCMBObject>(id + "currentDP");
-        
+           _query = new NCMBQuery<NCMBObject>(id + "currentDP");
+
 
         // 保存されているデータ件数を取得
+        
         _query.CountAsync((int count, NCMBException e) => {
             if (e != null)
             {
-                //件数取得失敗時の処理
-                Debug.Log("DP件数の取得に失敗しました");
+                
+                    //件数取得失敗時の処理
+                    Debug.Log("DP件数の取得に失敗しました");
+                
             }
             else
             {
                 //データ件数が取得できていたらサーバにデータを送る
-                
 
+                Debug.Log("成功しました");
                 SendRakugakiData(count);
 
             }
@@ -78,7 +85,7 @@ public class DP_save : MonoBehaviour
         //QueryTestを検索するクラスを作成
         if (count != 0)
         {
-            NCMBQuery<NCMBObject> query1 = new NCMBQuery<NCMBObject>(id + "currentDP");
+            NCMBQuery<NCMBObject> query1 = new NCMBQuery<NCMBObject>(id +"currentDP");
             //Scoreの値が7と一致するオブジェクト検索
             query1.WhereEqualTo("id", 1);
             query1.FindAsync((List<NCMBObject> objList, NCMBException P) =>
@@ -86,6 +93,7 @@ public class DP_save : MonoBehaviour
                 if (P != null)
                 {
                     //検索失敗時の処理
+                    Debug.Log("失敗しました");
                 }
                 else
                 {

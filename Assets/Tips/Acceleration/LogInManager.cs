@@ -35,8 +35,11 @@ public class LogInManager : MonoBehaviour
     private GameObject FALSE_OBJ_LOGIN;
     private GameObject FALSE_OBJ_SignUp;
     
-    private string temp;        //入力されたテキストを一時保管
-    
+    private string temp;
+
+
+    //入力されたテキストを一時保管
+
     int flage = 3;
     InputField inputField;
     
@@ -91,18 +94,19 @@ public class LogInManager : MonoBehaviour
         //inputfield = GameObject.Find("InputField_ID");
         //inputtext = GameObject.Find("InputField_ID/Text");
         //playertext = GameObject.Find("InputField_ID/Placeholder");
-        
+
 
         //temp = inputtext.GetComponent<Text>().text;
         //playertext.GetComponent<Text>().text = temp;
         //id = playertext.GetComponent<Text>().text;
         //Debug.Log(id);
-        
+
         inputField = GetComponent<InputField>();
         string inputValue = inputField.text;
-        
+
+        Debug.Log(inputValue);
         id = inputValue;
-        
+
         // ログを出力
         // inputfield.SetActive(false);
     }
@@ -125,14 +129,15 @@ public class LogInManager : MonoBehaviour
         //inputfield = GameObject.Find("InputField_MAIL");
         //inputtext = GameObject.Find("InputField_MAIL/Text");
         //playertext = GameObject.Find("InputField_MAIL/Placeholder");
-        
+
         //temp = inputtext.GetComponent<Text>().text;
         //playertext.GetComponent<Text>().text = temp;
         //mail = playertext.GetComponent<Text>().text;
-        
+
         inputField = GetComponent<InputField>();
         string inputValue = inputField.text;
-        
+
+        Debug.Log(inputValue);
         mail = inputValue;
         //  inputfield.SetActive(false);
     }
@@ -182,7 +187,13 @@ public class LogInManager : MonoBehaviour
         _query["Weight"] = 0;
         _query["mokuhyoWight"] = 0;
         _query["mokuhyoWalk"] = 0;
+
+
         
+
+
+
+
         _query.SaveAsync((NCMBException c) => {
             if (c != null)
             {
